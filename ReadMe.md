@@ -1,7 +1,7 @@
 # LottoMax Randomness & Pattern Analysis
 
 ## Overview
-This project evis to evaluate whether  **Lotto Max** draws are statistically indistinguishable from a uniform random process and explores empirical frequencies (single balls, pairs, triplets).
+This project is to evaluate whether  **Lotto Max** draws are statistically indistinguishable from a uniform random process and explores empirical frequencies (single balls, pairs, triplets).
 
 ## Project Goals
 1. **Randomness Testing** - Verify if LottoMax numbers are truly random
@@ -10,12 +10,12 @@ This project evis to evaluate whether  **Lotto Max** draws are statistically ind
 4. **Data Management** - Easy system to add new draw results
 
 ## Contents
-- `data/raw/` – Original Excel file with historical draws
-- `data/processed/` – Cleaned CSV files for analysis
-- `src/` – Python modules and utilities
-- `scripts/` – Utility scripts for data processing
-- `tests/` – Unit tests for statistical functions
--  `requirements.txt` – Dependencies
+- `data/raw/` â€“ Original Excel file with historical draws
+- `data/processed/` â€“ Cleaned CSV files for analysis
+- `src/` â€“ Python modules and utilities
+- `scripts/` â€“ Utility scripts for data processing
+- `tests/` â€“ Unit tests for statistical functions
+-  `requirements.txt` â€“ Dependencies
 
 ## Getting Started
 
