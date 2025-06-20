@@ -13,18 +13,32 @@ def frequency_analysis(input_path):
 
     # Flatten all main numbers into a single series
     main_numbers = pd.concat([df[col] for col in main_cols])
-    main_freq = main_numbers.value_counts().sort_values(ascending=False)
+    main_freq = main_numbers.value_counts().reset_index()
+    main_freq.columns = ['number', 'count']
+    main_freq = main_freq.sort_values(['count', 'number'], ascending=[False, True]).set_index('number')
     
     # Bonus number frequency (if present and not all missing)
     if bonus_col in df.columns and df[bonus_col].notna().any():
-        bonus_freq = df[bonus_col].value_counts().sort_values(ascending=False)
+        bonus_numbers = df[bonus_col].dropna()
+        bonus_freq = bonus_numbers.value_counts().reset_index()
+        bonus_freq.columns = ['number', 'count']
+        bonus_freq = bonus_freq.sort_values(['count', 'number'], ascending=[False, True]).set_index('number')
     else:
-        bonus_freq = pd.Series(dtype=int)
+        bonus_numbers = pd.Series(dtype=int)
+        bonus_freq = pd.DataFrame(columns=['count'])
+
+    # Combined (main + bonus)
+    all_numbers = pd.concat([main_numbers, bonus_numbers])
+    all_freq = all_numbers.value_counts().reset_index()
+    all_freq.columns = ['number', 'count']
+    all_freq = all_freq.sort_values(['count', 'number'], ascending=[False, True]).set_index('number')
     
     print("Main Number Frequencies (Descending order):")
     print(main_freq)
     print("\nBonus Number Frequencies (Descending Order):")
     print(bonus_freq)
+    print ("\nCombined (Main + Bonus) Number Frequencies (Descending Order):")
+    print(all_freq)
     
     # save to CSV
     main_freq.to_csv(os.path.join(PROCESSED_DIR, "main_number_frequencies.csv"), header=["count"])
